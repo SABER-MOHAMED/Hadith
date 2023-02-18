@@ -2,7 +2,7 @@
   "name": "hadith",
   "displayName": "Hadith",
   "description": "Get a Hadith from the Sunnah while you're coding 💻 keep in touch with the Sayings and Teachings of the Prophet Muhammed (ﷺ) 🕌💚",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "icon": "",
   "repository": {
     "type": "git",
@@ -25,8 +25,7 @@
     "Islam"
   ],
   "activationEvents": [
-    "*",
-    "onCommand:hadith.activate"
+    "onStartupFinished"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -44,13 +43,13 @@
       "properties": {
         "hadith.repeatedEveryMinute": {
           "type": "number",
-          "default": "25",
+          "default": "1",
           "enum": [
-            "25",
+            "20",
+            "30",
+            "40",
             "50",
-            "75",
-            "100",
-            "125"
+            "60"
           ],
           "description": "Select time between Hadith notifications."
         },
