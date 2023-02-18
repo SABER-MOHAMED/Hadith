@@ -1,8 +1,12 @@
+/**
+ * developer: @mohamedSaber
+ * desginer: @yahyaTizza
+ */
 const vscode = require("vscode");
 
 const axios = require("axios").default;
 
-async function getRandomAya() {
+const getRandomHadith = async () => {
   let hadith =
     "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا";
 
@@ -15,48 +19,54 @@ async function getRandomAya() {
         },
       }
     );
+    // Select Muslim language
+    const muslimLanguage = vscode.workspace
+      .getConfiguration("hadith")
+      .get("language");
 
-    hadith = `✨ ${data.hadith[1].body.slice(3, -4)}`;
+    muslimLanguage === "Arabic"
+      ? (hadith = `✨ ${data.hadith[1].body.slice(3, -4)}`)
+      : (hadith = `✨ ${data.hadith[0].body.slice(3, -4)}`);
   } catch (error) {}
 
   return hadith;
-}
+};
 
 /**
  * @param {vscode.ExtensionContext} context
  */
+
 function activate(context) {
   let disposable = vscode.commands.registerCommand(
-    "hadith.activate",
-
+    "hadith.getHadith",
     async function () {
-      getRandomAya()
+      getRandomHadith()
         .then(function (response) {
           vscode.window.showInformationMessage(response);
         })
         .catch((error) => {
           console.log("error11: ", error);
           vscode.window.showInformationMessage(
-            "Error while activating Hadith :( 111"
+            "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا"
           );
         });
     }
   );
 
-  //   let repeatedEveryMinute = vscode.workspace.getConfiguration("ayat").get('repeatedEveryMinute');
-  console.log("vscode.workspace: ", vscode.workspace.getConfiguration);
-  const repeatedEveryMinute = 1;
+  const repeatedEveryMinute = vscode.workspace
+    .getConfiguration("hadith")
+    .get("repeatedEveryMinute");
 
   const convertMinutesToMs = repeatedEveryMinute * 60000;
 
   setInterval(async function () {
-    getRandomAya()
+    getRandomHadith()
       .then(function (response) {
         vscode.window.showInformationMessage(response, "X");
       })
       .catch((error) => {
         vscode.window.showInformationMessage(
-          "Error while activating Hadith :( 2222"
+          "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا"
         );
       });
   }, convertMinutesToMs);
@@ -64,7 +74,6 @@ function activate(context) {
   context.subscriptions.push(disposable);
 }
 
-// This method is called when your extension is deactivated
 function deactivate() {}
 
 module.exports = {

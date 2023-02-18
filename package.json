@@ -1,25 +1,70 @@
 {
   "name": "hadith",
   "displayName": "Hadith",
-  "description": "",
+  "description": "Get a Hadith from the Sunnah during your coding session 💻 stay connected with Sayings and Teachings of the Prophet Muhammad (ﷺ) 🕌💚 ",
   "version": "0.0.1",
+  "icon": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SABER-MOHAMED/Hadith"
+  },
+  "publisher": "MohamedSaber",
+  "author": "Mohamed Saber <mrsabermed@gmail.com>",
   "engines": {
     "vscode": "^1.75.0"
   },
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "sunnah",
+    "Ayat",
+    "hadith",
+    "quran",
+    "quotes",
+    "Islam"
+  ],
   "activationEvents": [
+    "*",
     "onCommand:hadith.activate"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "hadith.activate",
-        "title": "Hadith"
+        "command": "hadith.getHadith",
+        "category": "Hadith",
+        "title": "Get Hadith",
+        "icon": ""
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Hadith configuration",
+      "properties": {
+        "hadith.repeatedEveryMinute": {
+          "type": "number",
+          "default": "25",
+          "enum": [
+            "25",
+            "50",
+            "75",
+            "100",
+            "125"
+          ],
+          "description": "Select time between Hadith notifications."
+        },
+        "hadith.language": {
+          "type": "string",
+          "description": "Select the language of Hadith",
+          "default": "Arabic",
+          "enum": [
+            "Arabic",
+            "English"
+          ]
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",
