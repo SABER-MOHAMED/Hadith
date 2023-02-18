@@ -26,13 +26,17 @@ Contributions are always appreciated!
 
 ### 0.0.1
 
-## Initial release of Hadith
+#### Initial release of Hadith
 
 - Get random Hadith 🚀
 
 - Multi Language handled (Arabic | English) 🚀
 
 - Window | Linux | Mac Supported 🚀
+
+### 0.0.3
+
+- Auto-Start the extension on vsCode Startup
 
 ## Working with Markdown
 
