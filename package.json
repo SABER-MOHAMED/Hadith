@@ -10,14 +10,16 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:hadith.helloWorld"
+    "onCommand:hadith.activate"
   ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "hadith.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "hadith.activate",
+        "title": "Hadith"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",

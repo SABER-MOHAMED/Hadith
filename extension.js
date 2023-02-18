@@ -1,36 +1,73 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-const vscode = require('vscode');
+const vscode = require("vscode");
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+const axios = require("axios").default;
+
+async function getRandomAya() {
+  let hadith =
+    "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا";
+
+  try {
+    const { data } = await axios.get(
+      `https://api.sunnah.com/v1/hadiths/random`,
+      {
+        headers: {
+          "X-API-Key": "SqD712P3E82xnwOAEOkGd5JZH8s9wRR24TqNFzjk",
+        },
+      }
+    );
+
+    hadith = `✨ ${data.hadith[1].body.slice(3, -4)}`;
+  } catch (error) {}
+
+  return hadith;
+}
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
+  let disposable = vscode.commands.registerCommand(
+    "hadith.activate",
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "hadith" is now active!');
+    async function () {
+      getRandomAya()
+        .then(function (response) {
+          vscode.window.showInformationMessage(response);
+        })
+        .catch((error) => {
+          console.log("error11: ", error);
+          vscode.window.showInformationMessage(
+            "Error while activating Hadith :( 111"
+          );
+        });
+    }
+  );
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('hadith.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
+  //   let repeatedEveryMinute = vscode.workspace.getConfiguration("ayat").get('repeatedEveryMinute');
+  console.log("vscode.workspace: ", vscode.workspace.getConfiguration);
+  const repeatedEveryMinute = 1;
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Hadith!');
-	});
+  const convertMinutesToMs = repeatedEveryMinute * 60000;
 
-	context.subscriptions.push(disposable);
+  setInterval(async function () {
+    getRandomAya()
+      .then(function (response) {
+        vscode.window.showInformationMessage(response, "X");
+      })
+      .catch((error) => {
+        vscode.window.showInformationMessage(
+          "Error while activating Hadith :( 2222"
+        );
+      });
+  }, convertMinutesToMs);
+
+  context.subscriptions.push(disposable);
 }
 
 // This method is called when your extension is deactivated
 function deactivate() {}
 
 module.exports = {
-	activate,
-	deactivate
-}
+  activate,
+  deactivate,
+};
