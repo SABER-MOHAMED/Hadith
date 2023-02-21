@@ -1,4 +1,6 @@
-# Hadith ✨
+# <img align="center" width="100" height="100" src="./assets/images/icon.png"> Hadith ✨
+
+<!-- ![](./assets/images/icon.png) -->
 
 Get a **Hadith** from the Sunnah while you're coding 💻 keep in touch with the Sayings and Teachings of **the Prophet Muhammed (ﷺ)** 🕌💚
 
@@ -46,4 +48,4 @@ You can author your README using Visual Studio Code. Here are some useful editor
 - Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
 - Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
 
-**Enjoy 🙌**
+**</> With ❤️ By <a href="https://twitter.com/msaber__">Saber</a>**
