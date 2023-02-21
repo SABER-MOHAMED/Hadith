@@ -1,6 +1,6 @@
-# <img align="center" width="100" height="100" src="./assets/images/icon.png"> Hadith ✨
+# <img align="center" width="100" height="100" src="./assets/icon.png"> Hadith ✨
 
-<!-- ![](./assets/images/icon.png) -->
+<!-- ![](./assets/icon.png) -->
 
 Get a **Hadith** from the Sunnah while you're coding 💻 keep in touch with the Sayings and Teachings of **the Prophet Muhammed (ﷺ)** 🕌💚
 
@@ -39,6 +39,5 @@ Contributions are always appreciated!
 ### 0.0.3
 
 - Auto-Start the extension on vsCode Startup
-
 
 **</> With ❤️ By <a href="https://twitter.com/msaber__">Saber</a>**
