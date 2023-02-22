@@ -32,27 +32,7 @@ const getRandomHadith = async () => {
   return hadith;
 };
 
-/**
- * @param {vscode.ExtensionContext} context
- */
-
-function activate(context) {
-  let disposable = vscode.commands.registerCommand(
-    "hadith.getHadith",
-    async function () {
-      getRandomHadith()
-        .then(function (response) {
-          vscode.window.showInformationMessage(response);
-        })
-        .catch((error) => {
-          console.log("error11: ", error);
-          vscode.window.showInformationMessage(
-            "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا"
-          );
-        });
-    }
-  );
-
+function activate() {
   const repeatedEveryMinute = vscode.workspace
     .getConfiguration("hadith")
     .get("repeatedEveryMinute");
@@ -64,14 +44,12 @@ function activate(context) {
       .then(function (response) {
         vscode.window.showInformationMessage(response, "X");
       })
-      .catch((error) => {
+      .catch(() => {
         vscode.window.showInformationMessage(
           "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا"
         );
       });
   }, convertMinutesToMs);
-
-  context.subscriptions.push(disposable);
 }
 
 function deactivate() {}

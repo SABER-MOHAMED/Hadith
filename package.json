@@ -25,8 +25,7 @@
     "Islam"
   ],
   "activationEvents": [
-    "*",
-    "onCommand:hadith.getHadith"
+    "*"
   ],
   "main": "./extension.js",
   "contributes": {
