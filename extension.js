@@ -51,7 +51,7 @@ function activate() {
           async (progress) => {
             progress.report({ increment: 0 });
             await new Promise((resolve) =>
-              setTimeout(resolve, convertMinuteToMs)
+              setTimeout(resolve, convertMinutesToMs)
             );
             progress.report({ increment: 100, message: "Done!" });
           }
@@ -68,7 +68,7 @@ function activate() {
           async (progress) => {
             progress.report({ increment: 0 });
             await new Promise((resolve) =>
-              setTimeout(resolve, convertMinuteToMs)
+              setTimeout(resolve, convertMinutesToMs)
             );
             progress.report({ increment: 100, message: "Done!" });
           }
