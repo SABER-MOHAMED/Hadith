@@ -2,11 +2,12 @@
   "name": "hadith",
   "displayName": "Hadith",
   "description": "Get a Hadith from the Sunnah while you're coding 💻 keep in touch with the Sayings and Teachings of the Prophet Muhammed (ﷺ) 🕌💚",
-  "version": "0.0.6",
-  "icon": "assets/icon.png",
+  "version": "0.1.0",
+  "license": "MIT",
+  "icon": "images/icon.png",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SABER-MOHAMED/Hadith.git"
+    "url": "https://github.com/SABER-MOHAMED/Hadith"
   },
   "publisher": "MohamedSaber",
   "author": "Mohamed Saber <mrsabermed@gmail.com>",
@@ -17,6 +18,7 @@
     "Other"
   ],
   "keywords": [
+    "adhkar",
     "sunnah",
     "Ayat",
     "hadith",
@@ -25,8 +27,7 @@
     "Islam"
   ],
   "activationEvents": [
-    "*",
-    "onCommand:hadith.getHadith"
+    "onStartupFinished"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -35,7 +36,10 @@
         "command": "hadith.getHadith",
         "category": "Hadith",
         "title": "Get Hadith",
-        "icon": "assets/icon.png"
+        "icon": {
+          "light": "images/icon.png",
+          "dark": "images/icon.png"
+        }
       }
     ],
     "configuration": {
