@@ -42,11 +42,36 @@ function activate() {
   setInterval(async function () {
     getRandomHadith()
       .then(function (response) {
-        vscode.window.showInformationMessage(response, "X");
+        vscode.window.withProgress(
+          {
+            location: vscode.ProgressLocation.Notification,
+            title: response,
+            cancellable: true,
+          },
+          async (progress) => {
+            progress.report({ increment: 0 });
+            await new Promise((resolve) =>
+              setTimeout(resolve, convertMinuteToMs)
+            );
+            progress.report({ increment: 100, message: "Done!" });
+          }
+        );
       })
       .catch(() => {
-        vscode.window.showInformationMessage(
-          "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا"
+        vscode.window.withProgress(
+          {
+            location: vscode.ProgressLocation.Notification,
+            title:
+              "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا",
+            cancellable: true,
+          },
+          async (progress) => {
+            progress.report({ increment: 0 });
+            await new Promise((resolve) =>
+              setTimeout(resolve, convertMinuteToMs)
+            );
+            progress.report({ increment: 100, message: "Done!" });
+          }
         );
       });
   }, convertMinutesToMs);
