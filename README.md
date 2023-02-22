@@ -1,4 +1,4 @@
-# <img align="center" src="https://raw.githubusercontent.com/SABER-MOHAMED/Hadith/main/assets/icon.png" alt="Hadith extension"> Hadith ✨
+# <img align="center" src="https://raw.githubusercontent.com/SABER-MOHAMED/Hadith/main/images/icon.png" alt="Hadith extension"> Hadith ✨
 
 Get a **Hadith** from the Sunnah while you're coding 💻 keep in touch with the Sayings and Teachings of **the Prophet Muhammed (ﷺ)** 🕌💚
 
