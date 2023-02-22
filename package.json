@@ -6,7 +6,7 @@
   "icon": "assets/icon.png",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SABER-MOHAMED/Hadith"
+    "url": "https://github.com/SABER-MOHAMED/Hadith"
   },
   "publisher": "MohamedSaber",
   "author": "Mohamed Saber <mrsabermed@gmail.com>",
