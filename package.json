@@ -2,7 +2,7 @@
   "name": "hadith",
   "displayName": "Hadith",
   "description": "Get a Hadith from the Sunnah while you're coding 💻 keep in touch with the Sayings and Teachings of the Prophet Muhammed (ﷺ) 🕌💚",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "icon": "assets/icon.png",
   "repository": {
     "type": "git",

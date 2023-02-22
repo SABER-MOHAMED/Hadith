@@ -11,7 +11,7 @@ This extension contributes the following settings:
 - `hadith.repeatedEveryMinute`: Set notification timer.
 - `hadith.language`: Set extension language.
 
-## How to configure notifications timer
+  ## How to configure notifications timer
 
 Go to File -> select -> preference -> settings
 
@@ -39,5 +39,9 @@ Contributions are always appreciated!
 ### 0.0.3
 
 - Auto-Start the extension on vsCode Startup
+
+### 0.0.5
+
+- Update Extension Icon
 
 **</> With ❤️ By <a href="https://twitter.com/msaber__">Saber</a>**
