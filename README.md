@@ -38,7 +38,7 @@ Contributions are always appreciated!
 
 - Auto-Start the extension when vsCode opened
 
-### 0.1.0
+### 0.1.2
 
 - Update Extension Icon 🛠
 
