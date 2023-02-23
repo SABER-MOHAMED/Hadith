@@ -32,27 +32,7 @@ const getRandomHadith = async () => {
   return hadith;
 };
 
-/**
- * @param {vscode.ExtensionContext} context
- */
-
-function activate(context) {
-  let disposable = vscode.commands.registerCommand(
-    "hadith.getHadith",
-    async function () {
-      getRandomHadith()
-        .then(function (response) {
-          vscode.window.showInformationMessage(response);
-        })
-        .catch((error) => {
-          console.log("error11: ", error);
-          vscode.window.showInformationMessage(
-            "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا"
-          );
-        });
-    }
-  );
-
+function activate() {
   const repeatedEveryMinute = vscode.workspace
     .getConfiguration("hadith")
     .get("repeatedEveryMinute");
@@ -62,16 +42,39 @@ function activate(context) {
   setInterval(async function () {
     getRandomHadith()
       .then(function (response) {
-        vscode.window.showInformationMessage(response, "X");
+        vscode.window.withProgress(
+          {
+            location: vscode.ProgressLocation.Notification,
+            title: response,
+            cancellable: true,
+          },
+          async (progress) => {
+            progress.report({ increment: 0 });
+            await new Promise((resolve) =>
+              setTimeout(resolve, convertMinutesToMs)
+            );
+            progress.report({ increment: 100, message: "Done!" });
+          }
+        );
       })
-      .catch((error) => {
-        vscode.window.showInformationMessage(
-          "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا"
+      .catch(() => {
+        vscode.window.withProgress(
+          {
+            location: vscode.ProgressLocation.Notification,
+            title:
+              "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا",
+            cancellable: true,
+          },
+          async (progress) => {
+            progress.report({ increment: 0 });
+            await new Promise((resolve) =>
+              setTimeout(resolve, convertMinutesToMs)
+            );
+            progress.report({ increment: 100, message: "Done!" });
+          }
         );
       });
   }, convertMinutesToMs);
-
-  context.subscriptions.push(disposable);
 }
 
 function deactivate() {}
