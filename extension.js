@@ -1,14 +1,8 @@
 /**
- * developer: @mohamedSaber
+ * developer: @Saber
  * desginer: @yahyaTizza
  */
 const vscode = require("vscode");
-
-const axios = require("axios").default;
-
-const getRandomHadith = async () => {
-  let hadith =
-    "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا";
 
   try {
     const { data } = await axios.get(
@@ -73,8 +67,6 @@ function activate() {
             progress.report({ increment: 100, message: "Done!" });
           }
         );
-      });
-  }, convertMinutesToMs);
 }
 
 function deactivate() {}
