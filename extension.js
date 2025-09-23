@@ -6,35 +6,39 @@ const vscode = require("vscode");
 const axios = require("axios").default;
 
 const getRandomHadith = async () => {
-  let hadith =
-    "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا";
+    let hadith =
+      "✨ إِنَّ اللَّهَ وَمَلائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا";
 
-  try {
-    const { data } = await axios.get(
-      `https://api.sunnah.com/v1/hadiths/random`,
-      {
-        headers: {
-          "X-API-Key": "SqD712P3E82xnwOAEOkGd5JZH8s9wRR24TqNFzjk",
-        },
-      }
-    );
-    // Select Muslim language
-    const muslimLanguage = vscode.workspace
-      .getConfiguration("hadith")
-      .get("language");
+    try {
+      const { data } = await axios.get(
+        `https://api.sunnah.com/v1/hadiths/random`,
+        {
+          headers: {
+            "X-API-Key": "SqD712P3E82xnwOAEOkGd5JZH8s9wRR24TqNFzjk",
+          },
+        }
+      );
+      
+      const muslimLanguage = vscode.workspace
+        .getConfiguration("hadith")
+        .get("language");
 
-    muslimLanguage === "Arabic"
-      ? (hadith = `✨ ${data.hadith[1].body.slice(3, -4)}`)
-      : (hadith = `✨ ${data.hadith[0].body.slice(3, -4)}`);
-  } catch (error) {}
+      muslimLanguage === "Arabic"
+        ? (hadith = `✨ ${data.hadith[1].body.slice(3, -4)}`)
+        : (hadith = `✨ ${data.hadith[0].body.slice(3, -4)}`);
+    } catch (error) {
+      console.error(error);
+  }
 
 // is user clicked in area of hadith, the hadith will be updated to new one!
-    vscode.window.showInformationMessage(hadith, "Next")
-        .then(selection => {
-            if (selection === "Next") {
-                getRandomHadith(); 
-            }});
-  return hadith
+    vscode.window.showInformationMessage(hadith, "Next", "Cancel")
+      .then(selection => {
+        if (selection === "Next") {
+          getRandomHadith(); 
+        }
+        
+      });
+  // return hadith
 };
 
 function activate() {
@@ -42,6 +46,7 @@ function activate() {
     .getConfiguration("hadith")
     .get("repeatedEveryMinute");
 
+    getRandomHadith()
   const convertMinutesToMs = repeatedEveryMinute * 60000;
 
   setInterval(async function () {
