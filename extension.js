@@ -3,7 +3,6 @@
  * desginer: @yahyaTizza
  */
 const vscode = require("vscode");
-
 const axios = require("axios").default;
 
 const getRandomHadith = async () => {
@@ -29,7 +28,13 @@ const getRandomHadith = async () => {
       : (hadith = `✨ ${data.hadith[0].body.slice(3, -4)}`);
   } catch (error) {}
 
-  return hadith;
+// is user clicked in area of hadith, the hadith will be updated to new one!
+    vscode.window.showInformationMessage(hadith, "Next")
+        .then(selection => {
+            if (selection === "Next") {
+                getRandomHadith(); 
+            }});
+  return hadith
 };
 
 function activate() {
@@ -54,6 +59,7 @@ function activate() {
               setTimeout(resolve, convertMinutesToMs)
             );
             progress.report({ increment: 100, message: "Done!" });
+            
           }
         );
       })
@@ -76,6 +82,8 @@ function activate() {
       });
   }, convertMinutesToMs);
 }
+
+
 
 function deactivate() {}
 
